@@ -17,6 +17,7 @@ function mockGetMyArticles(status = 200) {
 
 test("指定したタグをもつ記事が一件もない場合、null が返る", async () => {
   mockGetMyArticles();
+  // playwrightというタグがついた記事はないので、null が返る
   const data = await getMyArticleLinksByCategory("playwright");
   expect(data).toBeNull();
 });

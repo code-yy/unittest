@@ -11,8 +11,10 @@ describe("getGreet", () => {
       id: "xxxxxxx-123456",
       email: "taroyamada@myapi.testing.com",
     });
+    // getMyProfileが、nameがなければ「Hello, anonymous user!」を返すようになっているのでこのテストは通る
     await expect(getGreet()).resolves.toBe("Hello, anonymous user!");
   });
+
   test("データ取得成功時：ユーザー名がある場合", async () => {
     jest.spyOn(Fetchers, "getMyProfile").mockResolvedValueOnce({
       id: "xxxxxxx-123456",
@@ -21,6 +23,7 @@ describe("getGreet", () => {
     });
     await expect(getGreet()).resolves.toBe("Hello, taroyamada!");
   });
+
   test("データ取得失敗時", async () => {
     // getMyProfile が reject した時の値を再現
     jest.spyOn(Fetchers, "getMyProfile").mockRejectedValueOnce(httpError);
@@ -28,6 +31,7 @@ describe("getGreet", () => {
       err: { message: "internal server error" },
     });
   });
+
   test("データ取得失敗時、エラー相当のデータが例外としてスローされる", async () => {
     expect.assertions(1);
     jest.spyOn(Fetchers, "getMyProfile").mockRejectedValueOnce(httpError);
