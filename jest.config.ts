@@ -1,6 +1,6 @@
 export default {
   clearMocks: true,
-  collectCoverage: false,
+  collectCoverage: true,
   coverageDirectory: "coverage",
   moduleFileExtensions: ["js", "jsx", "ts", "tsx"],
   testEnvironment: "jest-environment-jsdom",

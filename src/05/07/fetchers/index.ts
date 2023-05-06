@@ -15,10 +15,11 @@ const headers = {
   "Content-Type": "application/json",
 };
 
-export function postMyAddress(values: unknown): Promise<Result> {
-  return fetch(host("/my/address"), {
+export async function postMyAddress(values: unknown): Promise<Result> {
+  const res = await fetch(host("/my/address"), {
     method: "POST",
     body: JSON.stringify(values),
     headers,
-  }).then(handleResponse);
+  });
+  return handleResponse(res);
 }
